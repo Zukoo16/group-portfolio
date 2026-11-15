@@ -55,6 +55,18 @@ npm run user:create
 
 Пароль bcryptjs көмегімен хэштеледі. Жоба/API жазбалары серверде тексеріледі; әр студент өз жобаларын ғана өңдей немесе өшіре алады.
 
+## Vercel-де жариялау
+
+GitHub репозиторийді Vercel-ге қосып, `main` тармағын Production Branch ретінде қолданыңыз. Railway-дегі MySQL интернеттен қосылу үшін Public TCP Proxy қолданады; оның `MYSQL_PUBLIC_URL` мәнін Vercel жобасының **Production** Environment Variables бөлімінде `DATABASE_URL` атымен сақтаңыз.
+
+Сол жерде мына мәндерді баптаңыз:
+
+- `DATABASE_URL` — Railway MySQL қызметіндегі `MYSQL_PUBLIC_URL`.
+- `NEXTAUTH_SECRET` — `node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"` командасымен жасалған құпия мән.
+- `NEXTAUTH_URL` — жарияланған сайттың HTTPS домені.
+
+Құпия мәндерді GitHub-қа немесе чатқа қоспаңыз. Railway дерекқорының схемасын жергілікті PowerShell ортасында `DATABASE_URL` мәнін Railway URL-іне уақытша орнатып, `npx prisma db push` командасымен жасаңыз. Production ортасына `DEMO_LOGIN_EMAIL`, `DEMO_LOGIN_PASSWORD` немесе `DEMO_LOGIN_NAME` қоспаңыз.
+
 ## Өндірістік тексеру
 
 ```powershell
@@ -62,4 +74,4 @@ npm run lint
 npm run build
 ```
 
-Vercel-де `DATABASE_URL`, `NEXTAUTH_SECRET`, `NEXTAUTH_URL` мәндерін Production ортасына енгізіңіз. MySQL сервері Vercel-ден қолжетімді болуы керек.
+Әр push-тен кейін Vercel автоматты түрде жаңа deployment жасайды.
