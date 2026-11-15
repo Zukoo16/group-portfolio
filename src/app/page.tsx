@@ -10,7 +10,8 @@ import {
   Sparkles,
   UsersRound,
 } from "lucide-react";
-import { ProjectCard, type PublicProject } from "@/components/project-card";
+import { ProjectGallery } from "@/components/project-gallery";
+import type { PublicProject } from "@/components/project-card";
 import { prisma } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
@@ -237,11 +238,7 @@ export default async function Home() {
               </p>
             </div>
           ) : projects.length > 0 ? (
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
-              {projects.map((project) => (
-                <ProjectCard key={project.id} project={project} />
-              ))}
-            </div>
+            <ProjectGallery projects={projects} />
           ) : (
             <div className="rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-14 text-center">
               <span className="mx-auto flex size-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-700">
