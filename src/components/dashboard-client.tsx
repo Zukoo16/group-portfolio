@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { isThirdLevelProjectUrl } from "@/lib/project-domain";
 import {
   ArrowUpRight,
   Check,
@@ -80,6 +81,10 @@ export function DashboardClient({
     event.preventDefault();
     setError("");
     setNotice("");
+    if (!isThirdLevelProjectUrl(form.liveUrl)) {
+      setError("Үшінші деңгейлі доменді енгіз: https://student.vercel.app немесе https://project.example.kz");
+      return;
+    }
     setProjectBusy(true);
 
     try {
@@ -194,7 +199,7 @@ export function DashboardClient({
   }
 
   return (
-    <main className="min-h-[calc(100vh-72px)] bg-slate-50">
+    <main className="student-workspace min-h-[calc(100vh-72px)] bg-slate-50">
       <section className="border-b border-slate-200 bg-white">
         <div className="mx-auto max-w-7xl px-5 py-9 sm:px-8 sm:py-12">
           <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-700">
@@ -299,16 +304,19 @@ export function DashboardClient({
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
                   <label htmlFor="liveUrl" className="mb-1.5 block text-sm font-semibold text-slate-700">
-                    Демо сілтемесі
+                    Жоба сайты · 3-деңгейлі домен *
                   </label>
                   <input
                     id="liveUrl"
                     type="url"
+                    required
+                    aria-describedby="domain-hint"
                     value={form.liveUrl}
                     onChange={(event) => setForm({ ...form, liveUrl: event.target.value })}
-                    placeholder="https://..."
+                    placeholder="https://student.vercel.app"
                     className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
                   />
+                  <p id="domain-hint" className="mt-2 text-xs leading-5 text-stone-500">Міндетті: student.vercel.app немесе project.example.kz сияқты үшінші деңгейлі домен.</p>
                 </div>
                 <div>
                   <label htmlFor="githubUrl" className="mb-1.5 block text-sm font-semibold text-slate-700">
@@ -465,7 +473,7 @@ export function DashboardClient({
               </div>
               <div>
                 <label htmlFor="profile-bio" className="mb-1.5 block text-sm font-semibold text-slate-700">
-                  Мамандығыңыз / bio
+                  Мінездемем / Өзім туралы
                 </label>
                 <textarea
                   id="profile-bio"
@@ -473,9 +481,10 @@ export function DashboardClient({
                   maxLength={500}
                   value={profile.bio}
                   onChange={(event) => setProfile({ ...profile, bio: event.target.value })}
-                  placeholder="Мысалы: Full-stack әзірлеуші"
+                  placeholder="Қандай адамсың? Неге қызығасың? Топта сені немен таниды? :)"
                   className="w-full resize-y rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm leading-5 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
                 />
+                <p className="mt-2 text-xs leading-5 text-stone-500">Бұл мәтін топ тізімінде және жеке портфолиоңда бәріне көрінеді.</p>
               </div>
               <div>
                 <label htmlFor="profile-github" className="mb-1.5 block text-sm font-semibold text-slate-700">

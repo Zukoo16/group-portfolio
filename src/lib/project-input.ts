@@ -1,3 +1,5 @@
+import { isThirdLevelProjectUrl } from "./project-domain";
+
 export type ProjectInput = {
   title: string;
   description: string;
@@ -59,6 +61,9 @@ export function parseProjectInput(input: unknown): ProjectInputResult {
   }
   if (liveUrl === undefined || githubUrl === undefined) {
     return { error: "Сілтемелер http:// немесе https:// арқылы басталуы керек." };
+  }
+  if (!liveUrl || !isThirdLevelProjectUrl(liveUrl)) {
+    return { error: "Жобаға үшінші деңгейлі домен міндетті. Мысалы: https://student.vercel.app немесе https://project.example.kz" };
   }
 
   return {

@@ -43,11 +43,11 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="relative flex min-h-[calc(100vh-72px)] items-center justify-center overflow-hidden bg-slate-50 px-5 py-14">
+    <main className="student-login student-workspace relative flex min-h-[calc(100vh-72px)] items-center justify-center overflow-hidden bg-slate-50 px-5 py-14">
       <div className="pointer-events-none absolute -left-36 top-8 size-96 rounded-full bg-blue-100/70 blur-3xl" />
       <div className="pointer-events-none absolute -right-32 bottom-0 size-96 rounded-full bg-indigo-100/70 blur-3xl" />
       <div className="relative grid w-full max-w-5xl overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-xl shadow-slate-200/70 lg:grid-cols-[0.9fr_1.1fr]">
-        <aside className="relative hidden flex-col justify-between overflow-hidden bg-slate-950 p-10 text-white lg:flex">
+        <aside className="relative hidden flex-col justify-between overflow-hidden bg-[#f5eddb] p-10 text-stone-800 lg:flex">
           <div className="absolute -right-28 -top-20 size-80 rounded-full border border-blue-300/10" />
           <div className="absolute -right-10 top-4 size-44 rounded-full border border-blue-300/10" />
           <div>
@@ -67,13 +67,13 @@ export default function LoginPage() {
                 Студент кабинеті
               </p>
               <h1 className="mt-4 text-4xl font-bold leading-tight tracking-tight">
-                Еңбегіңізді
+                Сәлем, өз адамымыз!
                 <br />
-                ортаға салыңыз.
+                Қош келдің :)
               </h1>
-              <p className="mt-5 max-w-sm text-sm leading-7 text-slate-300">
-                Жобаларыңызды портфолиоға қосып, академиялық қауымдастықпен
-                бөлісіңіз.
+              <p className="mt-5 max-w-sm text-sm leading-7 text-stone-600">
+                Жобаңды көрсет, өзің туралы жаз, топқа бір жылы сөз қалдыр.
+                Бәрі осы жерден басталады.
               </p>
             </div>
           </div>

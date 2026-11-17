@@ -11,7 +11,7 @@ export async function GET() {
     const projects = await prisma.project.findMany({
       orderBy: { createdAt: "desc" },
       include: {
-        user: { select: { name: true, githubUrl: true } },
+        user: { select: { id: true, name: true, githubUrl: true } },
       },
     });
 

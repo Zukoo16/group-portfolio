@@ -9,7 +9,7 @@ export function SiteHeader() {
   const { status } = useSession();
 
   return (
-    <header className="sticky top-0 z-30 border-b border-slate-200/80 bg-white/90 backdrop-blur-xl">
+    <header className="community-header sticky top-0 z-30 border-b border-stone-200/80 bg-[#fffdf8]/95 backdrop-blur-xl">
       <nav
         aria-label="Негізгі навигация"
         className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 sm:px-8"
@@ -27,15 +27,18 @@ export function SiteHeader() {
           <span className="hidden h-9 border-l border-slate-200 sm:block" />
           <span className="hidden leading-tight sm:block">
             <span className="block text-sm font-bold tracking-tight text-slate-950">
-              Қорқыт Ата университеті
+              ИСАИ-25-1 ♡
             </span>
             <span className="hidden text-xs text-slate-500 sm:block">
-              Ақпараттық жүйелер тобы · Студенттер портфолиосы
+              Біздің топ. Біздің оқиғалар.
             </span>
           </span>
         </Link>
 
         <div className="flex items-center gap-2 sm:gap-6">
+          <Link href="/#life" className="hidden text-sm font-medium text-stone-600 hover:text-orange-700 lg:block">Топ өмірі</Link>
+          <Link href="/#students" className="hidden text-sm font-medium text-stone-600 hover:text-orange-700 md:block">Біздің топ</Link>
+          <Link href="/#wishes" className="hidden text-sm font-medium text-stone-600 hover:text-orange-700 md:block">Тілектер</Link>
           <Link
             href="/#projects"
             className="hidden text-sm font-medium text-slate-600 transition hover:text-blue-700 sm:block"
@@ -65,13 +68,14 @@ export function SiteHeader() {
           ) : (
             <Link
               href="/login"
-              className="inline-flex items-center gap-2 rounded-full bg-blue-700 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-800"
+              className="warm-button"
             >
-              Студентке кіру <ArrowUpRight size={16} />
+              Кіру <ArrowUpRight size={16} />
             </Link>
           )}
         </div>
       </nav>
+      <nav aria-label="Мобильді навигация" className="mobile-group-nav md:hidden"><Link href="/#life">Топ өмірі</Link><Link href="/#students">Біздің топ</Link><Link href="/#projects">Жобалар</Link><Link href="/#wishes">Тілектер</Link></nav>
     </header>
   );
 }

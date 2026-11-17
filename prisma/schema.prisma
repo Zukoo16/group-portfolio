@@ -22,7 +22,19 @@ model User {
   bio       String?
   githubUrl String?
   projects  Project[]
+  wishes    Wish[]
   createdAt DateTime  @default(now())
+}
+
+model Wish {
+  id        String   @id @default(cuid())
+  message   String   @db.VarChar(500)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([userId])
 }
 
 model Project {
